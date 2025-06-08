@@ -1,3 +1,5 @@
+//DEFINICI√ìN DE LA ESTRUCTURA VEH√çCULO E IMPLEMENTACION DE FUNCIONES Y VALIDACIONES B√ÅSICAS//
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -35,24 +37,24 @@ Vehiculo registrarVehiculo() {
 		if (validarPlaca(v.placa)) {
 			valido = 1;
 		} else {
-			printf("Placa inv·lida. Debe tener 3 letras seguidas de 3-4 dÌgitos.\n");
+			printf("Placa inv√°lida. Debe tener 3 letras seguidas de 3-4 d√≠gitos.\n");
 		}
 		intentos++;
 	}
 	
 	valido = 0; intentos = 0;
 	while (!valido && intentos < 3) {
-		printf("Ingrese el n˙mero de cÈdula del Propietario: ");
+		printf("Ingrese el n√∫mero de c√©dula del Propietario: ");
 		scanf("%14s", v.cedula);
 		if (strlen(v.cedula) != 10) {
-			printf("CÈdula inv·lida!!!. Debe tener exactamente 10 dÌgitos.\n");
+			printf("C√©dula inv√°lida!!!. Debe tener exactamente 10 d√≠gitos.\n");
 			intentos++;
 			continue; 
 		}
 		valido = 1;
 		for (int i = 0; i < 10; i++) {
 			if (!isdigit(v.cedula[i])) {
-				printf("CÈdula inv·lida!!!. Debe contener solo dÌgitos.\n");
+				printf("C√©dula inv√°lida!!!. Debe contener solo d√≠gitos.\n");
 				valido = 0;
 				break; 
 			}
@@ -62,36 +64,36 @@ Vehiculo registrarVehiculo() {
 	
 	valido = 0; intentos = 0;
 	while (!valido && intentos < 3) {
-		printf("Ingrese el tipo de vehÌculo (M o C): ");
+		printf("Ingrese el tipo de veh√≠culo (M o C): ");
 		scanf("%19s", v.tipo);
 		if (strcmp(v.tipo, "M") == 0 || strcmp(v.tipo, "C") == 0) {
 			valido = 1; 
 		} else {
-			printf("Tipo de vehÌculo inv·lido!!!. Debe ser 'M' para motocicleta o 'C' para carro.\n");
+			printf("Tipo de veh√≠culo inv√°lido!!!. Debe ser 'M' para motocicleta o 'C' para carro.\n");
 		}
 		intentos++;
 	}
 	
 	valido = 0; intentos = 0;
 	while (!valido && intentos < 3) {
-		printf("Ingrese el aÒo del vehÌculo: ");
+		printf("Ingrese el a√±o del veh√≠culo: ");
 		scanf("%d", &v.anio);
 		if (v.anio >= 1995 && v.anio <= 2025){
 			valido = 1;
 		} else {
-			printf("AÒo inv·lido!!!. Debe ser un n˙mero entre 1995 y 2025.\n");
+			printf("A√±o inv√°lido!!!. Debe ser un n√∫mero entre 1995 y 2025.\n");
 		}
 		intentos++;
 	}
 	
 	valido = 0; intentos = 0;
 	while (!valido && intentos < 3) {
-		printf("Ingrese el aval˙o del vehÌculo: ");
+		printf("Ingrese el aval√∫o del veh√≠culo: ");
 		scanf("%f", &v.avaluo);
 		if (v.avaluo > 0) {
 			valido = 1;
 		} else {
-			printf("Aval˙o inv·lido!!!. Debe ser un n˙mero positivo.\n");
+			printf("Aval√∫o inv√°lido!!!. Debe ser un n√∫mero positivo.\n");
 		}
 		intentos++;
 	}
@@ -102,15 +104,15 @@ Vehiculo registrarVehiculo() {
 int main() {
 	Vehiculo nuevo = registrarVehiculo();
 	
-	const char* tipoTexto = (strcmp(nuevo.tipo, "M") == 0) ? "motocicleta" : "vehÌculo";
+	const char* tipoTexto = (strcmp(nuevo.tipo, "M") == 0) ? "motocicleta" : "veh√≠culo";
 	const char* articulo = (strcmp(nuevo.tipo, "M") == 0) ? "de la" : "del";
 	
 	printf("\n----Datos Registrados----\n");
 	printf("Placa %s %s: %s\n", articulo, tipoTexto, nuevo.placa);
-	printf("N˙mero de cÈdula del propietario: %s\n", nuevo.cedula);
-	printf("Tipo de vehÌculo: %s\n", nuevo.tipo);
-	printf("AÒo %s %s: %d\n", articulo, tipoTexto, nuevo.anio);
-	printf("Aval˙o %s %s: %.2f\n", articulo, tipoTexto, nuevo.avaluo);
+	printf("N√∫mero de c√©dula del propietario: %s\n", nuevo.cedula);
+	printf("Tipo de veh√≠culo: %s\n", nuevo.tipo);
+	printf("A√±o %s %s: %d\n", articulo, tipoTexto, nuevo.anio);
+	printf("Aval√∫o %s %s: %.2f\n", articulo, tipoTexto, nuevo.avaluo);
 	
 	return 0;
 }
