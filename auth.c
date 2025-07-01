@@ -1,7 +1,7 @@
 #include "auth.h"
 
-//Retorna: AUTH_EXITO si la autenticacion es correcta 
-        //AUTH_FALLO si falla, o codigo de error negativo
+//AUTH_EXITO si la autenticacion es correcta 
+//AUTH_FALLO si falla, o codigo de error negativo
 
 int autenticar_usuario(void) {
     char usuario[MAX_USUARIO];
@@ -50,12 +50,12 @@ int autenticar_usuario(void) {
 int validar_usuario(const char* usuario) {
     int longitud = strlen(usuario);
     
-    // Verificar longitud exacta de 10 di≠gitos
+    // Verificar longitud exacta de 10 d√≠gitos
     if (longitud != 10) {
         return AUTH_ERROR_FORMATO;
     }
     
-    // Verificar que todos los caracteres sean digitos
+    // Verificar que todos los caracteres sean d√≠gitos
     for (int i = 0; i < longitud; i++) {
         if (!isdigit(usuario[i])) {
             return AUTH_ERROR_FORMATO;
@@ -65,12 +65,12 @@ int validar_usuario(const char* usuario) {
     return AUTH_EXITO;
 }
 
-//Valida que el PIN tenga exactamente 6 di≠gitos
+//Valida que el PIN tenga exactamente 6 di¬≠gitos
  
 int validar_pin(const char* pin) {
     int longitud = strlen(pin);
     
-    // Verificar longitud exacta de 6 di≠gitos
+    // Verificar longitud exacta de 6 di¬≠gitos
     if (longitud != 6) {
         return AUTH_ERROR_FORMATO;
     }
@@ -86,7 +86,7 @@ int validar_pin(const char* pin) {
 }
 
 //Verifica los datos del archivo de usuarios
-//Formato esperado del archivo: usuario:pin (una lÌnea por usuario)
+//Formato esperado del archivo: usuario:pin (una l√≠nea por usuario)
 
 int verificar_credenciales(const char* usuario, const char* pin) {
     FILE* archivo;
@@ -99,7 +99,7 @@ int verificar_credenciales(const char* usuario, const char* pin) {
     if (archivo == NULL) {
         return AUTH_ERROR_ARCHIVO;
     }
-    // Leer lÌnea por lÌnea
+    // Leer l√≠nea por l√≠nea
     while (fgets(linea, sizeof(linea), archivo)) {
 		
         // Remover salto de linea si existe
@@ -133,7 +133,7 @@ void leer_usuario(char* usuario) {
     printf("Ingrese usuario (10 digitos): ");
     
     if (fgets(usuario, MAX_USUARIO, stdin) != NULL) {
-        // Remover salto de l√≠nea si existe
+        // Remover salto de l√≠¬≠nea si existe
         usuario[strcspn(usuario, "\n")] = '\0';
     } else {
         // Si hay error en la lectura, establecer cadena vac√≠a
@@ -151,10 +151,10 @@ void leer_pin(char* pin) {
     printf("Ingrese PIN (6 digitos): ");
     
     if (fgets(pin, MAX_PIN, stdin) != NULL) {
-        // Remover salto de li≠nea si existe
+        // Remover salto de li¬≠nea si existe
         pin[strcspn(pin, "\n")] = '\0';
     } else {
-        // Si hay error en la lectura, establecer cadena vacia
+        // Si hay error en la lectura, establecer cadena vac√≠a
         pin[0] = '\0';
     }
     
@@ -192,7 +192,7 @@ void mostrar_error_usuario(int codigo_error) {
 }
 
 
- //Muestra mensajes de error especi≠ficos para PIN
+ //Muestra mensajes de error especi¬≠ficos para PIN
  
 void mostrar_error_pin(int codigo_error) {
     switch (codigo_error) {
