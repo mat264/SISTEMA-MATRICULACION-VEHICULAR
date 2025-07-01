@@ -7,35 +7,35 @@
 
 //FUNCION MENU INICIAL
 void mostrarMenu(){
-    printf("---SISTEMA MATRICULACI”N---\n");
-    printf("Elija una opciÛn: \n");
-    printf("1.-Registrar y matricular vehÌ≠culo\n");
-    printf("2.-Listar vehÌculos\n");
-    printf("3.-Buscar vehÌculo por placa (Comprobantes)\n");
+    printf("---SISTEMA MATRICULACIÁ≤ç---\n");
+    printf("Elija una opciÈèÆ: \n");
+    printf("1.-Registrar y matricular vehÁ£æculo\n");
+    printf("2.-Listar vehÁç≥ulos\n");
+    printf("3.-Buscar vehÁç≥ulo por placa (Comprobantes)\n");
     printf("4.-Salir\n");
-    printf("OpciÛn: ");
+    printf("OpciÈèÆ: ");
 }
 
 //CUERPO DEL PROGRAMA
 int main() {
     //PROCESO DE AUTENTICACION ===
     limpiarPantalla();
-    printf("BIENVENIDO AL SISTEMA DE MATRICULACI”N VEHICULAR\n");
+    printf("BIENVENIDO AL SISTEMA DE MATRICULACIÁ≤ç VEHICULAR\n");
     printf("==============================================\n\n");
     
     // Intentar autenticacion
     int resultado_auth = autenticar_usuario();
     
     if (resultado_auth != AUTH_EXITO) {
-        printf("\nAcceso denegado. El programa se cerrar·°.\n");
+        printf("\nAcceso denegado. El programa se cerrarÂØ£.\n");
         printf("Presione Enter para salir...");
         getchar();
-        return 1; // Salir con cÛdigo de error
+        return 1; // Salir con cÈèöigo de error
     }
     
-    // AutenticaciÛn correcta
+    // AutenticaciÈèÆ correcta
     limpiarPantalla();
-    printf("°ACCESO AUTORIZADO!\n");
+    printf("ÔºåCCESO AUTORIZADO!\n");
     printf("Presione Enter para continuar al sistema...");
     getchar();
     limpiarPantalla();
@@ -45,13 +45,13 @@ int main() {
     int totalVehiculos = 0;
     int opcionMenu;
     
-    //Bucle hasta que el usuario elija una opciÛn
+    //Bucle hasta que el usuario elija una opciÈèÆ
     do {
         mostrarMenu();
         
         // Validar entrada del menu
         if (scanf("%d", &opcionMenu) != 1) {
-            printf("Error: Ingrese un n˙mero v·lido.\n");
+            printf("Error: Ingrese un nÓÄ≠ero vÂ´Æido.\n");
             // Limpiar buffer completamente
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
@@ -123,11 +123,11 @@ int main() {
                     int indice = buscarVehiculoPorPlaca(vehiculos, totalVehiculos, placaBuscar);
                     
                     if (indice != -1) {
-                        printf("\n°Vehiculo encontrado!\n");
+                        printf("\n‚Äìehiculo encontrado!\n");
                         mostrarComprobante(vehiculos[indice]);
                         
                         // Preguntar si desea generar archivo TXT
-                        printf("\nøDesea generar un archivo TXT con este comprobante? (s/n): ");
+                        printf("\nÊæ≥esea generar un archivo TXT con este comprobante? (s/n): ");
                         char respuesta;
                         scanf(" %c", &respuesta);
                         
@@ -143,7 +143,7 @@ int main() {
                             
                             generarComprobanteArchivo(vehiculos[indice], nombreArchivo);
                             
-                            printf("\nøDesea abrir la ubicacion del archivo? (s/n): ");
+                            printf("\nÊæ≥esea abrir la ubicacion del archivo? (s/n): ");
                             char abrirUbicacion;
                             scanf(" %c", &abrirUbicacion);
                             
@@ -171,14 +171,14 @@ int main() {
             }
             
             case 4: {
-                printf("\n°Gracias por usar el Sistema de MatriculaciÛn!\n");
-                printf("Cerrando sesiÛn...\n");
+                printf("\nÔºöracias por usar el Sistema de MatriculaciÈèÆ!\n");
+                printf("Cerrando sesiÈèÆ...\n");
                 printf("Saliendo del programa...\n");
                 break;
             }
             
             default: {
-                printf("\nOpciÛn inv·lida. Ingrese una opciÛn del 1 al 4.\n");
+                printf("\nOpciÈèÆ invÂ´Æida. Ingrese una opciÈèÆ del 1 al 4.\n");
                 printf("Presione Enter para continuar...");
                 getchar();
                 limpiarPantalla();
