@@ -7,33 +7,33 @@
 
 //FUNCION MENU INICIAL
 void mostrarMenu(){
-    printf("---SISTEMA MATRICULACI粍---\n");
-    printf("Elija una opci鏮: \n");
-    printf("1.-Registrar y matricular veh磾culo\n");
-    printf("2.-Listar veh獳ulos\n");
-    printf("3.-Buscar veh獳ulo por placa (Comprobantes)\n");
+    printf("---SISTEMA MATRICULACIÓN---\n");
+    printf("Elija una opción: \n");
+    printf("1.-Registrar y matricular vehículo\n");
+    printf("2.-Listar vehículos\n");
+    printf("3.-Buscar vehículo por placa (Comprobantes)\n");
     printf("4.-Salir\n");
-    printf("Opci鏮: ");
+    printf("Opción: ");
 }
 
 //CUERPO DEL PROGRAMA
 int main() {
     //PROCESO DE AUTENTICACION ===
     limpiarPantalla();
-    printf("BIENVENIDO AL SISTEMA DE MATRICULACI粍 VEHICULAR\n");
+    printf("BIENVENIDO AL SISTEMA DE MATRICULACIÓN VEHICULAR\n");
     printf("==============================================\n\n");
     
     // Intentar autenticacion
     int resultado_auth = autenticar_usuario();
     
     if (resultado_auth != AUTH_EXITO) {
-        printf("\nAcceso denegado. El programa se cerrar寣.\n");
+        printf("\nAcceso denegado. El programa se cerrará.\n");
         printf("Presione Enter para salir...");
         getchar();
-        return 1; // Salir con c鏚igo de error
+        return 1; // Salir con código de error
     }
     
-    // Autenticaci鏮 correcta
+    // Autenticación correcta
     limpiarPantalla();
     printf("，CCESO AUTORIZADO!\n");
     printf("Presione Enter para continuar al sistema...");
@@ -45,13 +45,13 @@ int main() {
     int totalVehiculos = 0;
     int opcionMenu;
     
-    //Bucle hasta que el usuario elija una opci鏮
+    //Bucle hasta que el usuario elija una opción
     do {
         mostrarMenu();
         
         // Validar entrada del menu
         if (scanf("%d", &opcionMenu) != 1) {
-            printf("Error: Ingrese un nero v嫮ido.\n");
+            printf("Error: Ingrese un número válido.\n");
             // Limpiar buffer completamente
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
@@ -95,7 +95,7 @@ int main() {
                 } else {
                     char placaBuscar[20];
                     int valido = 0;
-                    printf("Vehiculos registrados: %d\n", totalVehiculos);
+                    printf("Vehículos registrados: %d\n", totalVehiculos);
                     printf("Ingrese la placa a buscar (formato ABC1234): ");
                     
                     //Bucle que se repite hasta que ingrese un valor valido (valido=1)
@@ -127,7 +127,7 @@ int main() {
                         mostrarComprobante(vehiculos[indice]);
                         
                         // Preguntar si desea generar archivo TXT
-                        printf("\n澳esea generar un archivo TXT con este comprobante? (s/n): ");
+                        printf("\nDesea generar un archivo TXT con este comprobante? (s/n): ");
                         char respuesta;
                         scanf(" %c", &respuesta);
                         
@@ -171,14 +171,14 @@ int main() {
             }
             
             case 4: {
-                printf("\n：racias por usar el Sistema de Matriculaci鏮!\n");
-                printf("Cerrando sesi鏮...\n");
+                printf("\n：racias por usar el Sistema de Matriculación\n");
+                printf("Cerrando sesión...\n");
                 printf("Saliendo del programa...\n");
                 break;
             }
             
             default: {
-                printf("\nOpci鏮 inv嫮ida. Ingrese una opci鏮 del 1 al 4.\n");
+                printf("\nOpción inválida. Ingrese una opción del 1 al 4.\n");
                 printf("Presione Enter para continuar...");
                 getchar();
                 limpiarPantalla();
