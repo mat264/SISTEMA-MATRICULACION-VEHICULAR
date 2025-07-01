@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <string.h>
 
-// Función para limpiar consola ("cls" para windows, "clear" para linux)
+// FunciÃ³n para limpiar consola ("cls" para windows, "clear" para linux)
 void limpiarPantalla() {
-    system("clear");
+    system("cls");
 }
 
 // Valida el formato de la placa
@@ -27,7 +27,7 @@ void mostrarVehiculo(Vehiculo v) {
     printf("----Datos del Vehiculo----\n");
     printf("Placa: %s\n", v.placa);
     printf("Numero de cedula del propietario: %s\n", v.cedula);
-    printf("Año: %d\n", v.anio);
+    printf("AÃ±o: %d\n", v.anio);
     printf("Avaluo: $%.2f\n", v.avaluo);
     printf("Matricula: $%.2f\n", v.matricula);
     printf("-------------------------\n");
@@ -73,16 +73,16 @@ Vehiculo registrarVehiculo() {
     
     limpiarPantalla();
     
-    // Validar año
+    // Validar aÃ±o
     valido = 0;
     while (!valido) {
-        printf("Ingrese el año del vehiculo: ");
+        printf("Ingrese el aÃ±o del vehiculo: ");
         
         if (scanf("%d", &v.anio) == 1) {
             if (v.anio >= 1995 && v.anio <= 2025) {
                 valido = 1;
             } else {
-                printf("Año invalido. Ingrese uno entre 1995 y 2025\n");
+                printf("AÃ±o invalido. Ingrese uno entre 1995 y 2025\n");
             }
         } else {
             printf("Error: Debe ingresar solo numeros. No se permiten letras o caracteres especiales.\n");
@@ -173,11 +173,11 @@ void listarVehiculos(Vehiculo vehiculos[], int totalVehiculos) {
         return;
     }
     
-    printf("\n=== LISTA DE VEHÍCULOS MATRICULADOS ===\n");
-    printf("Total de vehículos: %d\n\n", totalVehiculos);
+    printf("\n=== LISTA DE VEHÃCULOS MATRICULADOS ===\n");
+    printf("Total de vehÃ­culos: %d\n\n", totalVehiculos);
     
     for (int i = 0; i < totalVehiculos; i++) {
-        printf("Vehículo #%d:\n", i + 1);
+        printf("VehÃ­culo #%d:\n", i + 1);
         mostrarVehiculo(vehiculos[i]);
         printf("\n");
     }
@@ -187,7 +187,7 @@ void listarVehiculos(Vehiculo vehiculos[], int totalVehiculos) {
 int buscarVehiculoPorPlaca(Vehiculo vehiculos[], int totalVehiculos, const char* placa) {
     for (int i = 0; i < totalVehiculos; i++) {
         if (strcmp(vehiculos[i].placa, placa) == 0) {
-            return i; // Retorna el del vehículo encontrado
+            return i; // Retorna el del vehÃ­culo encontrado
         }
     }
     return -1; // No encontrado
