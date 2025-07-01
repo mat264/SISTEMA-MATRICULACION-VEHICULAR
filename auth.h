@@ -6,10 +6,10 @@
 #include <string.h>
 #include <ctype.h>
 
-// Constantes para el módulo de autenticación
-#define MAX_USUARIO 11      // 10 dígitos + terminador nulo
-#define MAX_PIN 7           // 6 dí­gitos + terminador nulo
-#define MAX_LINEA 256       // Tamaño máximo de línea en archivo
+// Constantes para el mÃ³dulo de autenticaciÃ³n
+#define MAX_USUARIO 11      // 10 dÃ­gitos + terminador nulo
+#define MAX_PIN 7           // 6 dÃ­Â­gitos + terminador nulo
+#define MAX_LINEA 256       // TamaÃ±o mÃ¡ximo de lÃ­nea en archivo
 #define ARCHIVO_USUARIOS "usuarios.txt"
 
 // Codigos de retorno para las funciones
@@ -19,7 +19,7 @@
 #define AUTH_ERROR_FORMATO -2
 #define AUTH_ERROR_ENTRADA -3
 
-// Estructura para almacenar credenciales
+// Estructura para almacenar usuario y clave
 typedef struct {
     char usuario[MAX_USUARIO];
     char pin[MAX_PIN];
