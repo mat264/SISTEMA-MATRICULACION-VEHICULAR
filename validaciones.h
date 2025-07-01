@@ -9,12 +9,12 @@ typedef struct {
     int anio;
     char tipo[20];      
     float avaluo;
-    float matricula;    // Valor total de la matí­cula
+    float matricula;    // Valor total de la matÃ­Â­cula
     int revisiones;     // Numero de revisiones realizadas
     int multas;         // Numero de multas
     float valorBase;    // 1% del avaluo
     float recargo;      // 15% si no cumple 3 revisiones
-    float descuento;    // 10% si el vehí­culo tiene más de 10 años
+    float descuento;    // 10% si el vehÃ­Â­culo tiene mÃ¡s de 10 aÃ±os
     float multasTotales; // 50$ por cada multa
 } Vehiculo;
 
@@ -23,7 +23,7 @@ int validarPlaca(const char* placa);
 void limpiarPantalla();
 Vehiculo registrarVehiculo();
 
-// Funciones de gestion de vehículos
+// Funciones de gestion de vehÃ­culos
 void agregarVehiculo(Vehiculo vehiculos[], int* totalVehiculos, Vehiculo nuevoVehiculo);
 void listarVehiculos(Vehiculo vehiculos[], int totalVehiculos);
 int buscarVehiculoPorPlaca(Vehiculo vehiculos[], int totalVehiculos, const char* placa);
