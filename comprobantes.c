@@ -12,7 +12,7 @@ void mostrarComprobante(Vehiculo v) {
     printf("================================================\n");
     printf("Placa: %s\n", v.placa);
     printf("Cedula del propietario: %s\n", v.cedula);
-    printf("A�o del vehiculo: %d (Antiguedad: %d a�os)\n", v.anio, antiguedad);
+    printf("Año del vehiculo: %d (Antiguedad: %d años)\n", v.anio, antiguedad);
     printf("Avaluo: $%.2f\n", v.avaluo);
     printf("================================================\n");
     printf("           DETALLE DE COSTOS\n");
@@ -64,8 +64,8 @@ void generarComprobanteArchivo(Vehiculo v, const char* nombreArchivo) {
     fprintf(archivo, "================================================\n");
     fprintf(archivo, "Placa: %s\n", v.placa);
     fprintf(archivo, "Cedula del propietario: %s\n", v.cedula);
-    fprintf(archivo, "Año del vehiculo: %d (Antiguedad: %d a�os)\n", v.anio, antiguedad);
-    fprintf(archivo, "Avalúo: $%.2f\n", v.avaluo);
+    fprintf(archivo, "AÃ±o del vehiculo: %d (Antiguedad: %d años)\n", v.anio, antiguedad);
+    fprintf(archivo, "AvalÃºo: $%.2f\n", v.avaluo);
     fprintf(archivo, "================================================\n");
     fprintf(archivo, "           DETALLE DE COSTOS\n");
     fprintf(archivo, "================================================\n");
@@ -101,5 +101,5 @@ void generarComprobanteArchivo(Vehiculo v, const char* nombreArchivo) {
     fprintf(archivo, "================================================\n");
     
     fclose(archivo);
-    printf("¡Comprobante guardado exitosamente en: %s!\n", nombreArchivo);
+    printf("Â¡Comprobante guardado exitosamente en: %s!\n", nombreArchivo);
 }
