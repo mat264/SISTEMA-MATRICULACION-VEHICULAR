@@ -14,7 +14,7 @@ void mostrarMenu(){
     printf("3.-Buscar vehículo por placa (Comprobantes)\n");
     printf("4.-Salir\n");
     printf("Opción: ");
-}
+} 
 
 //CUERPO DEL PROGRAMA
 int main() {
