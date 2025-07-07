@@ -6,10 +6,10 @@
 #include <string.h>
 #include <ctype.h>
 
-// Constantes para el módulo de autenticación
-#define MAX_USUARIO 11      // 10 dígitos + terminador nulo
-#define MAX_PIN 7           // 6 dí­gitos + terminador nulo
-#define MAX_LINEA 256       // Tamaño máximo de línea en archivo
+// Constantes para el modulo de autenticacion
+#define MAX_USUARIO 11      // 10 digitos + terminador nulo
+#define MAX_PIN 7           // 6 digitos + terminador nulo
+#define MAX_LINEA 256       // Tama?o m?ximo de li?nea en archivo
 #define ARCHIVO_USUARIOS "usuarios.txt"
 
 // Codigos de retorno para las funciones

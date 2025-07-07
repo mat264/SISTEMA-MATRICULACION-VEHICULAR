@@ -12,7 +12,7 @@ float calcularMatricula(Vehiculo* vehiculo) {
         vehiculo->recargo = 0.0;
     }
     
-    // Calcular descuento por antiguedad (mas de 10 años)
+    // Calcular descuento por antiguedad (mas de 10 a?os)
     int anioActual = 2025;
     int antiguedad = anioActual - vehiculo->anio;
     if (antiguedad > 10) {

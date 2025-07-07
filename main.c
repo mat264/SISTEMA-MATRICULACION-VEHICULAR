@@ -7,51 +7,48 @@
 
 //FUNCION MENU INICIAL
 void mostrarMenu(){
-    printf("---SISTEMA MATRICULACIÃ“N---\n");
-    printf("Elija una opciÃ³n: \n");
-    printf("1.-Registrar y matricular vehÃ­culo\n");
-    printf("2.-Listar vehÃ­culos\n");
-    printf("3.-Buscar vehÃ­culo por placa (Comprobantes)\n");
+    printf("\n----SISTEMA MATRICULACIÓN----\n");
+    printf("Elija una opción: \n");
+    printf("1.-Registrar y matricular vehículo\n");
+    printf("2.-Listar veículos\n");
+    printf("3.-Buscar vehículo por placa (Comprobantes)\n");
     printf("4.-Salir\n");
-    printf("OpciÃ³n: ");
+    printf("Opción: ");
 } 
-
 //CUERPO DEL PROGRAMA
 int main() {
     //PROCESO DE AUTENTICACION ===
     limpiarPantalla();
-    printf("BIENVENIDO AL SISTEMA DE MATRICULACIÃ“N VEHICULAR\n");
-    printf("==============================================\n\n");
-    
+    printf("----BIENVENIDO AL SISTEMA DE MATRICULACIÓN VEHICULAR----\n");
     // Intentar autenticacion
     int resultado_auth = autenticar_usuario();
     
     if (resultado_auth != AUTH_EXITO) {
-        printf("\nAcceso denegado. El programa se cerrarÃ¡.\n");
-        printf("Presione Enter para salir...");
+        printf("\nAcceso denegado. El programa se cerrará.\n");
+        printf("Presione Enter para salir");
         getchar();
-        return 1; // Salir con cÃ³digo de error
+        return 1; // Salir con código de error
     }
     
-    // AutenticaciÃ³n correcta
+    // Autenticación correcta
     limpiarPantalla();
-    printf("ï¼ŒCCESO AUTORIZADO!\n");
-    printf("Presione Enter para continuar al sistema...");
+    printf("ACCESO AUTORIZADO!\n");
+    printf("Presione Enter para continuar al sistema");
     getchar();
     limpiarPantalla();
-    
+     
     //INICIO DEL SISTEMA PRINCIPAL
     Vehiculo vehiculos[MAX_VEHICULOS];
     int totalVehiculos = 0;
     int opcionMenu;
     
-    //Bucle hasta que el usuario elija una opciÃ³n
+    //Bucle hasta que el usuario elija una opción
     do {
         mostrarMenu();
         
         // Validar entrada del menu
         if (scanf("%d", &opcionMenu) != 1) {
-            printf("Error: Ingrese un nÃºmero vÃ¡lido.\n");
+            printf("Error: Ingrese un número valido.\n");
             // Limpiar buffer completamente
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
@@ -69,19 +66,18 @@ int main() {
                 printf("=== MODULO DE REGISTRO ===\n");
                 Vehiculo nuevo = registrarVehiculo();
                 agregarVehiculo(vehiculos, &totalVehiculos, nuevo);
-                printf("\n=== VEHICULO REGISTRADO EXITOSAMENTE ===\n");
-                mostrarComprobante(nuevo);
-                printf("\nPresione Enter para continuar...");
+                printf("\n---VEHICULO REGISTRADO EXITOSAMENTE---\n");
+                printf("\nPresione Enter para continuar");
                 getchar();
-                limpiarPantalla();
-                break;
+				limpiarPantalla();
+				break;
             }
             
             case 2: {
                 limpiarPantalla();
                 printf("=== MODULO DE LISTADO ===\n");
                 listarVehiculos(vehiculos, totalVehiculos);
-                printf("\nPresione Enter para continuar...");
+                printf("\nPresione Enter para continuar");
                 getchar();
                 limpiarPantalla();
                 break;
@@ -92,11 +88,13 @@ int main() {
                 printf("=== MODULO DE BUSQUEDA ===\n");
                 if (totalVehiculos == 0) {
                     printf("No hay vehiculos registrados para buscar.\n");
+					getchar();
+					limpiarPantalla();
                 } else {
                     char placaBuscar[20];
                     int valido = 0;
-                    printf("VehÃ­culos registrados: %d\n", totalVehiculos);
-                    printf("Ingrese la placa a buscar (formato ABC1234): ");
+                    printf("Vehículos registrados: %d\n", totalVehiculos);
+                    printf("Ingrese la placa a buscar (formato XYZ567): ");
                     
                     //Bucle que se repite hasta que ingrese un valor valido (valido=1)
                     while (!valido) {
@@ -111,9 +109,9 @@ int main() {
                             if (validarPlaca(placaBuscar)) {
                                 valido = 1;
                             } else {
-                                printf("Formato de placa invalido. Use 3 letras mayusculas seguidas de 3-4 digitos.\n");
-                                printf("Ejemplo valido: ABC1234 o XYZ567\n");
+                                printf("Formato de placa invalido. Use 3 letras mayusculas seguidas de 3-4 digitos.(XYZ567)");
                                 printf("Ingrese la placa nuevamente: ");
+								limpiarPantalla();
                             }
                         } else {
                             printf("Error al leer la placa. Intente nuevamente: ");
@@ -123,7 +121,7 @@ int main() {
                     int indice = buscarVehiculoPorPlaca(vehiculos, totalVehiculos, placaBuscar);
                     
                     if (indice != -1) {
-                        printf("\nâ€“ehiculo encontrado!\n");
+                        printf("\nVehículo encontrado!\n");
                         mostrarComprobante(vehiculos[indice]);
                         
                         // Preguntar si desea generar archivo TXT
@@ -143,7 +141,7 @@ int main() {
                             
                             generarComprobanteArchivo(vehiculos[indice], nombreArchivo);
                             
-                            printf("\næ¾³esea abrir la ubicacion del archivo? (s/n): ");
+                            printf("\nDesea abrir la ubicacion del archivo? (s/n): ");
                             char abrirUbicacion;
                             scanf(" %c", &abrirUbicacion);
                             
@@ -154,8 +152,6 @@ int main() {
                                 system("explorer .");
 #elif __linux__
                                 system("xdg-open .");
-#elif __APPLE__
-                                system("open .");
 #endif
                             }
                         }
@@ -171,14 +167,14 @@ int main() {
             }
             
             case 4: {
-                printf("\nï¼šracias por usar el Sistema de MatriculaciÃ³n\n");
-                printf("Cerrando sesiÃ³n...\n");
+                printf("\nGracias por usar el Sistema de Matriculación\n");
+                printf("Cerrando sesión...\n");
                 printf("Saliendo del programa...\n");
                 break;
             }
             
             default: {
-                printf("\nOpciÃ³n invÃ¡lida. Ingrese una opciÃ³n del 1 al 4.\n");
+                printf("\nOpción inválida. Ingrese una opción del 1 al 4.\n");
                 printf("Presione Enter para continuar...");
                 getchar();
                 limpiarPantalla();
