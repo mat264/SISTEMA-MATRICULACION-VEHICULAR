@@ -8,7 +8,7 @@ int autenticar_usuario(void) {
     char pin[MAX_PIN];
     int resultado;
     
-    printf("\n=== SISTEMA DE AUTENTICACION ===\n");
+    printf("SISTEMA DE AUTENTICACION\n");
     
     while (1) {
         // Leer y validar usuario
@@ -33,7 +33,7 @@ int autenticar_usuario(void) {
         resultado = verificar_credenciales(usuario, pin);
         
         if (resultado == AUTH_EXITO) {
-            printf("\nAutenticacion exitosa. Acceso permitido.\n");
+            printf("\nAcceso permitido.\n");
             return AUTH_EXITO;
         } else if (resultado == AUTH_ERROR_ARCHIVO) {
             printf("\nError: No se pudo acceder al archivo de usuarios.\n");
@@ -45,17 +45,17 @@ int autenticar_usuario(void) {
     }
 }
 
-//Valida que el usuario tenga exactamente 10 dÃ­gitos
+//Valida que el usuario tenga exactamente 10 dígitos
  
 int validar_usuario(const char* usuario) {
     int longitud = strlen(usuario);
     
-    // Verificar longitud exacta de 10 dÃ­gitos
+    // Verificar longitud exacta de 10 dígitos
     if (longitud != 10) {
         return AUTH_ERROR_FORMATO;
     }
     
-    // Verificar que todos los caracteres sean dÃ­gitos
+    // Verificar que todos los caracteres sean dígitos
     for (int i = 0; i < longitud; i++) {
         if (!isdigit(usuario[i])) {
             return AUTH_ERROR_FORMATO;
@@ -65,12 +65,12 @@ int validar_usuario(const char* usuario) {
     return AUTH_EXITO;
 }
 
-//Valida que el PIN tenga exactamente 6 diÂ­gitos
+//Valida que el PIN tenga exactamente 6 di­gitos
  
 int validar_pin(const char* pin) {
     int longitud = strlen(pin);
     
-    // Verificar longitud exacta de 6 diÂ­gitos
+    // Verificar longitud exacta de 6 di­gitos
     if (longitud != 6) {
         return AUTH_ERROR_FORMATO;
     }
@@ -86,7 +86,7 @@ int validar_pin(const char* pin) {
 }
 
 //Verifica los datos del archivo de usuarios
-//Formato esperado del archivo: usuario:pin (una lÃ­nea por usuario)
+//Formato esperado del archivo: usuario:pin (una línea por usuario)
 
 int verificar_credenciales(const char* usuario, const char* pin) {
     FILE* archivo;
@@ -99,7 +99,7 @@ int verificar_credenciales(const char* usuario, const char* pin) {
     if (archivo == NULL) {
         return AUTH_ERROR_ARCHIVO;
     }
-    // Leer lÃ­nea por lÃ­nea
+    // Leer línea por línea
     while (fgets(linea, sizeof(linea), archivo)) {
 		
         // Remover salto de linea si existe
@@ -130,13 +130,13 @@ int verificar_credenciales(const char* usuario, const char* pin) {
 }
 //Lee usuario
 void leer_usuario(char* usuario) {
-    printf("Ingrese usuario (10 digitos): ");
+    printf("Ingrese su cédula (10 digitos): ");
     
     if (fgets(usuario, MAX_USUARIO, stdin) != NULL) {
-        // Remover salto de lÃ­Â­nea si existe
+        // Remover salto de lí­nea si existe
         usuario[strcspn(usuario, "\n")] = '\0';
     } else {
-        // Si hay error en la lectura, establecer cadena vacÃ­a
+        // Si hay error en la lectura, establecer cadena vacía
         usuario[0] = '\0';
     }
     
@@ -151,10 +151,10 @@ void leer_pin(char* pin) {
     printf("Ingrese PIN (6 digitos): ");
     
     if (fgets(pin, MAX_PIN, stdin) != NULL) {
-        // Remover salto de liÂ­nea si existe
+        // Remover salto de li­nea si existe
         pin[strcspn(pin, "\n")] = '\0';
     } else {
-        // Si hay error en la lectura, establecer cadena vacÃ­a
+        // Si hay error en la lectura, establecer cadena vacía
         pin[0] = '\0';
     }
     
@@ -177,7 +177,7 @@ void limpiar_buffer(void) {
 void mostrar_error_usuario(int codigo_error) {
     switch (codigo_error) {
         case AUTH_ERROR_FORMATO:
-            printf("Error: El usuario debe tener exactamente 10 digitos numericos.\n");
+            printf("Error: La cédula debe tener exactamente 10 digitos numericos.\n");
             break;
         case AUTH_ERROR_ENTRADA:
             printf("Error: Entrada invalida. Intente nuevamente.\n");
@@ -186,13 +186,13 @@ void mostrar_error_usuario(int codigo_error) {
             printf("Error: No se pudo acceder al archivo de usuarios.\n");
             break;
         default:
-            printf("Error desconocido en usuario.\n");
+            printf("Error desconocido en la cédula.\n");
             break;
     }
 }
 
 
- //Muestra mensajes de error especiÂ­ficos para PIN
+ //Muestra mensajes de error especi­ficos para PIN
  
 void mostrar_error_pin(int codigo_error) {
     switch (codigo_error) {
