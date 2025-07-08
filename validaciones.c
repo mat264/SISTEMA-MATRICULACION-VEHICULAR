@@ -7,7 +7,7 @@
 
 // Funcion para limpiar consola ("cls" para windows, "clear" para linux)
 void limpiarPantalla() {
-    system("clear");
+    system("cls");
 }
 
 // Valida el formato de la placa
