@@ -246,7 +246,7 @@ int validar_usuario(const char* usuario) {
 int validar_pin(const char* pin) {
     int longitud = strlen(pin);
     
-    // Verificar longitud exacta de 6di­gitos
+    // Verificar longitud exacta de 6diÂ­gitos
     if (longitud != 6) {
         return AUTH_ERROR_FORMATO;
     }
@@ -262,7 +262,7 @@ int validar_pin(const char* pin) {
 }
 
 //Verifica los datos del archivo de usuarios
-//Formato esperado del archivo: usuario:pin (una li­nea por usuario)
+//Formato esperado del archivo: usuario:pin (una liÂ­nea por usuario)
 int verificar_credenciales(const char* usuario, const char* pin) {
     FILE* archivo;
     char linea[MAX_LINEA];
@@ -274,7 +274,7 @@ int verificar_credenciales(const char* usuario, const char* pin) {
     if (archivo == NULL) {
         return AUTH_ERROR_ARCHIVO;
     }
-    // Leer linea por li­nea
+    // Leer linea por liÂ­nea
     while (fgets(linea, sizeof(linea), archivo)) {
         
         // Remover salto de linea si existe
@@ -308,10 +308,10 @@ void leer_usuario(char* usuario) {
     printf("Ingrese su cedula (10 digitos): ");
     
     if (fgets(usuario, MAX_USUARIO, stdin) != NULL) {
-        // Remover salto de li­nea si existe
+        // Remover salto de liÂ­nea si existe
         usuario[strcspn(usuario, "\n")] = '\0';
     } else {
-        // Si hay error en la lectura, establecer cadena vaci­a
+        // Si hay error en la lectura, establecer cadena vaciÂ­a
         usuario[0] = '\0';
     }
     
