@@ -9,7 +9,7 @@
 // Constantes para el modulo de autenticacion
 #define MAX_USUARIO 11      // 10 digitos + terminador nulo
 #define MAX_PIN 7           // 6 digitos + terminador nulo
-#define MAX_LINEA 256       // Tamaño maximo de linea en archivo
+#define MAX_LINEA 256       // TamaÃ±o maximo de linea en archivo
 #define ARCHIVO_USUARIOS "usuarios.txt"
 
 // Codigos de retorno para las funciones
