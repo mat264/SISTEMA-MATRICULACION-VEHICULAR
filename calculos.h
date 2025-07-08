@@ -3,7 +3,7 @@
 
 #include "validaciones.h"
 
-// Funciones Cálculo de Matrícula
+// Funciones CÃ¡lculo de MatrÃ­cula
 float calcularMatricula(Vehiculo* vehiculo);
 
 #endif
