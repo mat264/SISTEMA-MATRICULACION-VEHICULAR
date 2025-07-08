@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <string.h>
 
-// Funci?n para limpiar consola ("cls" para windows, "clear" para linux)
+// Funcion para limpiar consola ("cls" para windows, "clear" para linux)
 void limpiarPantalla() {
-    system("cls");
+    system("clear");
 }
 
 // Valida el formato de la placa
@@ -27,7 +27,7 @@ void mostrarVehiculo(Vehiculo v) {
     printf("----Datos del Vehiculo----\n");
     printf("Placa: %s\n", v.placa);
     printf("Numero de cedula del propietario: %s\n", v.cedula);
-    printf("A?o: %d\n", v.anio);
+    printf("Año: %d\n", v.anio);
     printf("Avaluo: $%.2f\n", v.avaluo);
     printf("Matricula: $%.2f\n", v.matricula);
     printf("-------------------------\n");
@@ -48,7 +48,7 @@ Vehiculo registrarVehiculo() {
             printf("Placa invalida. Debe tener 3 letras mayusculas seguidas y de 3-4 digitos.\n");
         }
     }
-    
+
     limpiarPantalla();
     
     // Validar cedula
@@ -73,16 +73,16 @@ Vehiculo registrarVehiculo() {
     
     limpiarPantalla();
     
-    // Validar a?o
+    // Validar año
     valido = 0;
     while (!valido) {
-        printf("Ingrese el a?o del vehiculo: ");
+        printf("Ingrese el año del vehiculo: ");
         
         if (scanf("%d", &v.anio) == 1) {
             if (v.anio >= 1995 && v.anio <= 2025) {
                 valido = 1;
             } else {
-                printf("A?o invalido. Ingrese uno entre 1995 y 2025\n");
+                printf("Año invalido. Ingrese uno entre 1995 y 2025\n");
             }
         } else {
             printf("Error: Debe ingresar solo numeros. No se permiten letras o caracteres especiales.\n");
@@ -101,7 +101,7 @@ Vehiculo registrarVehiculo() {
             if (v.avaluo > 0 && v.avaluo <= 1000000) {
                 valido = 1;
             } else {
-                printf("Avaluo invalido!!!. Debe ser un numero entre 0 y 1000000.\n");
+                printf("Avaluo invalido. Debe ser un numero entre 0 y 1000000.\n");
             }
         } else {
             printf("Error: Debe ingresar un numero valido.\n");
@@ -115,12 +115,12 @@ Vehiculo registrarVehiculo() {
     // Preguntar numero de revisiones
     valido = 0;
     while (!valido) {
-        printf("Ingrese el numero de revisiones realizadas (0-3): ");
+        printf("Ingrese el numero de revisiones (0-3): ");
         if (scanf("%d", &v.revisiones) == 1) {
             if (v.revisiones >= 0 && v.revisiones <= 3) {
                 valido = 1;
             } else {
-                printf("Numero de revisiones invalido. Debe ser entre 0 y 3.\n");
+                printf("Numero de revisiones invalido. Debe ser un numero entero entre 0 y 3.\n");
             }
         } else {
             printf("Error: Debe ingresar un numero valido.\n");
@@ -174,10 +174,10 @@ void listarVehiculos(Vehiculo vehiculos[], int totalVehiculos) {
     }
     
     printf("\n=== LISTA DE VEHICULOS MATRICULADOS ===\n");
-    printf("Total de veh?culos: %d\n\n", totalVehiculos);
+    printf("Total de vehiculos: %d\n\n", totalVehiculos);
     
     for (int i = 0; i < totalVehiculos; i++) {
-        printf("Veh?culo #%d:\n", i + 1);
+        printf("Vehiculo #%d:\n", i + 1);
         mostrarVehiculo(vehiculos[i]);
         printf("\n");
     }

@@ -65,7 +65,7 @@ void generarComprobanteArchivo(Vehiculo v, const char* nombreArchivo) {
     fprintf(archivo, "Placa: %s\n", v.placa);
     fprintf(archivo, "Cedula del propietario: %s\n", v.cedula);
     fprintf(archivo, "Año del vehiculo: %d (Antiguedad: %d años)\n", v.anio, antiguedad);
-    fprintf(archivo, "Avalúo: $%.2f\n", v.avaluo);
+    fprintf(archivo, "Avaluo: $%.2f\n", v.avaluo);
     fprintf(archivo, "================================================\n");
     fprintf(archivo, "           DETALLE DE COSTOS\n");
     fprintf(archivo, "================================================\n");
