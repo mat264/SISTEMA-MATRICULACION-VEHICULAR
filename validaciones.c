@@ -27,7 +27,7 @@ void mostrarVehiculo(Vehiculo v) {
     printf("----Datos del Vehiculo----\n");
     printf("Placa: %s\n", v.placa);
     printf("Numero de cedula del propietario: %s\n", v.cedula);
-    printf("Año: %d\n", v.anio);
+    printf("AÃ±o: %d\n", v.anio);
     printf("Avaluo: $%.2f\n", v.avaluo);
     printf("Matricula: $%.2f\n", v.matricula);
     printf("-------------------------\n");
@@ -73,16 +73,16 @@ Vehiculo registrarVehiculo() {
     
     limpiarPantalla();
     
-    // Validar año
+    // Validar aÃ±o
     valido = 0;
     while (!valido) {
-        printf("Ingrese el año del vehiculo: ");
+        printf("Ingrese el aÃ±o del vehiculo: ");
         
         if (scanf("%d", &v.anio) == 1) {
             if (v.anio >= 1995 && v.anio <= 2025) {
                 valido = 1;
             } else {
-                printf("Año invalido. Ingrese uno entre 1995 y 2025\n");
+                printf("AÃ±o invalido. Ingrese uno entre 1995 y 2025\n");
             }
         } else {
             printf("Error: Debe ingresar solo numeros. No se permiten letras o caracteres especiales.\n");
