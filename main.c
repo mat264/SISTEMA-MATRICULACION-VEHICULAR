@@ -27,10 +27,10 @@ int main() {
         printf("\nAcceso denegado. El programa se cerrara.\n");
         printf("Presione Enter para salir");
         getchar();
-        return 1; // Salir con código de error
+        return 1; // Salir con cÃ³digo de error
     }
     
-    // Autenticación correcta
+    // AutenticaciÃ³n correcta
     limpiarPantalla();
     printf("ACCESO AUTORIZADO!\n");
     printf("Presione Enter para continuar al sistema");
@@ -42,7 +42,7 @@ int main() {
     int totalVehiculos = 0;
     int opcionMenu;
     
-    //Bucle hasta que el usuario elija una opción
+    //Bucle hasta que el usuario elija una opciÃ³n
     do {
         mostrarMenu();
         
@@ -122,7 +122,7 @@ int main() {
                     int indice = buscarVehiculoPorPlaca(vehiculos, totalVehiculos, placaBuscar);
                     
                     if (indice != -1) {
-                        printf("\nVehículo encontrado!\n");
+                        printf("\nVehÃ­culo encontrado!\n");
                         mostrarComprobante(vehiculos[indice]);
                         
                         // Preguntar si desea generar archivo TXT
