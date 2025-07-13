@@ -112,7 +112,8 @@ int main() {
                             } else {
                                 printf("Formato de placa invalido. Use 3 letras mayusculas seguidas de 3-4 digitos.(XYZ567)");
                                 printf("Ingrese la placa nuevamente: ");
-								limpiarPantalla();
+				getchar();			
+				limpiarPantalla();
                             }
                         } else {
                             printf("Error al leer la placa. Intente nuevamente: ");
