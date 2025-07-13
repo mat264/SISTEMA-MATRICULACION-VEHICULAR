@@ -10,7 +10,7 @@ void mostrarMenu(){
     printf("\n----SISTEMA MATRICULACION----\n");
     printf("Elija una opcion: \n");
     printf("1.-Registrar y matricular vehiculo\n");
-    printf("2.-Listar veiculos\n");
+    printf("2.-Listar vehiculos\n");
     printf("3.-Buscar vehiculo por placa (Comprobantes)\n");
     printf("4.-Salir\n");
     printf("Opcion: ");
