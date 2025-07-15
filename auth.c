@@ -5,7 +5,7 @@
 int mostrar_menu_fallback(void) {
     int opcion;
     printf("\n---- OPCIONES ----\n");
-    printf("1. Intentar de nuevo\n");
+    printf("1. Iniciar Sesion\n");
     printf("2. Registrar nuevo usuario\n");	
     printf("3. Salir\n");
     printf("Seleccione una opcion: ");
@@ -350,21 +350,25 @@ void mostrar_error_usuario(int codigo_error) {
     switch (codigo_error) {
         case AUTH_ERROR_FORMATO:
             printf("Error: La cedula debe tener exactamente 10 digitos numericos.\n");
+			printf("\nPresione Enter para continuar");
 			getchar();
 			limpiarPantalla();
             break;
         case AUTH_ERROR_ENTRADA:
             printf("Error: Entrada invalida. Intente nuevamente.\n");
+			printf("\nPresione Enter para continuar");
 			getchar();
 			limpiarPantalla();
             break;
         case AUTH_ERROR_ARCHIVO:
             printf("Error: No se pudo acceder al archivo de usuarios.\n");
+			printf("\nPresione Enter para continuar");
 			getchar();
 			limpiarPantalla();
             break;
         default:
             printf("Error desconocido en la cedula.\n");
+			printf("\nPresione Enter para continuar");
 			getchar();
 			limpiarPantalla();
             break;
@@ -376,21 +380,25 @@ void mostrar_error_pin(int codigo_error) {
     switch (codigo_error) {
         case AUTH_ERROR_FORMATO:
             printf("Error: El PIN debe tener exactamente 6 digitos numericos.\n");
+			printf("\nPresione Enter para continuar");
 			getchar();
 			limpiarPantalla();
             break;
         case AUTH_ERROR_ENTRADA:
             printf("Error: Entrada invalida. Intente nuevamente.\n");
+			printf("\nPresione Enter para continuar");
 			getchar();
 			limpiarPantalla();
             break;
         case AUTH_ERROR_ARCHIVO:
             printf("Error: No se pudo acceder al archivo de usuarios.\n");
+			printf("\nPresione Enter para continuar");
 			getchar();
 			limpiarPantalla();
             break;
         default:
             printf("Error desconocido en PIN.\n");
+			printf("\nPresione Enter para continuar");
 			getchar();
 			limpiarPantalla();
             break;
