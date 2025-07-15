@@ -2,10 +2,10 @@
 //AUTH_EXITO si la autenticacion es correcta 
 //AUTH_FALLO si falla, o codigo de error negativo
 
-int mostrar_menu_auth(void) {
+int mostrar_menu_fallback(void) {
     int opcion;
-    printf("\n----SISTEMA DE AUTENTICACION----\n");
-    printf("1. Iniciar sesion\n");
+    printf("\n---- OPCIONES ----\n");
+    printf("1. Intentar de nuevo\n");
     printf("2. Registrar nuevo usuario\n");	
     printf("3. Salir\n");
     printf("Seleccione una opcion: ");
@@ -26,76 +26,76 @@ int autenticar_usuario(void) {
     int opcion_menu;
     
     while (1) {
-        opcion_menu = mostrar_menu_auth();
+        // Directamente pedir cedula y PIN
+        limpiarPantalla();
+        printf("\n=== INICIAR SESION ===\n");
         
-        switch (opcion_menu) {
-            case 1: // Iniciar sesion
-                limpiarPantalla();
-                printf("\n=== INICIAR SESION ===\n");
+        // Leer y validar usuario
+        do {
+            leer_usuario(usuario);
+            resultado = validar_usuario(usuario);
+            if (resultado != AUTH_EXITO) {
+                mostrar_error_usuario(resultado);
+            }
+        } while (resultado != AUTH_EXITO);
+        
+        // Leer y validar PIN
+        do {
+            leer_pin(pin);
+            resultado = validar_pin(pin);
+            if (resultado != AUTH_EXITO) {
+                mostrar_error_pin(resultado);
+            }
+        } while (resultado != AUTH_EXITO);
+        
+        // Verificar credenciales
+        resultado = verificar_credenciales(usuario, pin);
+        
+        if (resultado == AUTH_EXITO) {
+            printf("\nAcceso permitido.\n");
+            return AUTH_EXITO;
+        } else if (resultado == AUTH_ERROR_ARCHIVO) {
+            printf("\nError: No se pudo acceder al archivo de usuarios.\n");
+            printf("Presione Enter para continuar...");
+            getchar();
+        } else {
+            // Usuario o PIN incorrecto - mostrar menu de opciones
+            printf("\nUsuario o PIN incorrecto.\n");
+            
+            while (1) {
+                opcion_menu = mostrar_menu_fallback();
                 
-                // Leer y validar usuario
-                do {
-                    leer_usuario(usuario);
-                    resultado = validar_usuario(usuario);
-                    if (resultado != AUTH_EXITO) {
-                        mostrar_error_usuario(resultado);
-                    }
-                } while (resultado != AUTH_EXITO);
-                
-                // Leer y validar PIN
-                do {
-                    leer_pin(pin);
-                    resultado = validar_pin(pin);
-                    if (resultado != AUTH_EXITO) {
-                        mostrar_error_pin(resultado);
-                    }
-                } while (resultado != AUTH_EXITO);
-                
-                // Verificar credenciales
-                resultado = verificar_credenciales(usuario, pin);
-                
-                if (resultado == AUTH_EXITO) {
-                    printf("\nAcceso permitido.\n");
-                    return AUTH_EXITO;
-                } else if (resultado == AUTH_ERROR_ARCHIVO) {
-                    printf("\nError: No se pudo acceder al archivo de usuarios.\n");
-                    printf("Presione Enter para volver al menu");
-                    getchar();
-                    limpiarPantalla();
-                } else {
-                    printf("\nUsuario o PIN incorrecto. Intente nuevamente.\n");
-                    printf("Presione Enter para volver al menu");
-                    getchar();
-                    limpiarPantalla();
+                switch (opcion_menu) {
+                    case 1: // Intentar de nuevo
+                        break; // Sale del while interno y vuelve al bucle principal
+                        
+                    case 2: // Registrar usuario
+                        limpiarPantalla();
+                        printf("\n=== REGISTRAR NUEVO USUARIO ===\n");
+                        resultado = registrar_usuario();
+                        
+                        if (resultado == AUTH_EXITO) {
+                            printf("\nUsuario registrado exitosamente.\n");
+                            printf("Ahora puede iniciar sesion.\n");
+                        } else {
+                            mostrar_error_registro(resultado);
+                        }
+                        printf("Presione Enter para continuar...");
+                        getchar();
+                        break; // Sale del while interno y vuelve al bucle principal
+                        
+                    case 3: // Salir
+                        printf("\nSaliendo del sistema...\n");
+                        return AUTH_FALLO;
+                        
+                    default:
+                        printf("\nOpcion invalida. Intente nuevamente.\n");
+                        printf("Presione Enter para continuar...");
+                        getchar();
+                        continue; // Continua en el while interno
                 }
-                break;
-                
-            case 2: // Registrar usuario
-                limpiarPantalla();
-                printf("\n=== REGISTRAR NUEVO USUARIO ===\n");
-                resultado = registrar_usuario();
-                
-                if (resultado == AUTH_EXITO) {
-                    printf("\nUsuario registrado exitosamente.\n");
-                    printf("Ahora puede iniciar sesion.\n");
-                } else {
-                    mostrar_error_registro(resultado);
-                }
-                printf("Presione Enter para volver al menu");
-                getchar();
-                limpiarPantalla();
-                break;
-                
-            case 3: // Salir
-                printf("\nSaliendo del sistema...\n");
-                return AUTH_FALLO;
-                
-            default:
-                printf("\nOpcion invalida. Intente nuevamente.\n");
-                printf("Presione Enter para continuar...");
-                getchar();
-                limpiarPantalla();
-                break;
+                break; // Sale del while interno
+            }
         }
     }
 }
@@ -305,7 +305,7 @@ int verificar_credenciales(const char* usuario, const char* pin) {
 
 //Lee usuario
 void leer_usuario(char* usuario) {
-    printf("Ingrese su cedula (10 digitos): ");
+    printf("Ingrese su cedula (10 digitos): \n");
     
     if (fgets(usuario, MAX_USUARIO, stdin) != NULL) {
         // Remover salto de li­nea si existe
@@ -323,7 +323,7 @@ void leer_usuario(char* usuario) {
 
 //Lee pin
 void leer_pin(char* pin) {
-    printf("Ingrese PIN (6 digitos): ");
+    printf("Ingrese PIN (6 digitos): \n");
     
     if (fgets(pin, MAX_PIN, stdin) != NULL) {
         // Remover salto de linea si existe
@@ -350,15 +350,23 @@ void mostrar_error_usuario(int codigo_error) {
     switch (codigo_error) {
         case AUTH_ERROR_FORMATO:
             printf("Error: La cedula debe tener exactamente 10 digitos numericos.\n");
+			getchar();
+			limpiarPantalla();
             break;
         case AUTH_ERROR_ENTRADA:
             printf("Error: Entrada invalida. Intente nuevamente.\n");
+			getchar();
+			limpiarPantalla();
             break;
         case AUTH_ERROR_ARCHIVO:
             printf("Error: No se pudo acceder al archivo de usuarios.\n");
+			getchar();
+			limpiarPantalla();
             break;
         default:
             printf("Error desconocido en la cedula.\n");
+			getchar();
+			limpiarPantalla();
             break;
     }
 }
@@ -368,15 +376,23 @@ void mostrar_error_pin(int codigo_error) {
     switch (codigo_error) {
         case AUTH_ERROR_FORMATO:
             printf("Error: El PIN debe tener exactamente 6 digitos numericos.\n");
+			getchar();
+			limpiarPantalla();
             break;
         case AUTH_ERROR_ENTRADA:
             printf("Error: Entrada invalida. Intente nuevamente.\n");
+			getchar();
+			limpiarPantalla();
             break;
         case AUTH_ERROR_ARCHIVO:
             printf("Error: No se pudo acceder al archivo de usuarios.\n");
+			getchar();
+			limpiarPantalla();
             break;
         default:
             printf("Error desconocido en PIN.\n");
+			getchar();
+			limpiarPantalla();
             break;
     }
 }
