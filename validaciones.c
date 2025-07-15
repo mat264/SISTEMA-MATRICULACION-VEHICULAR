@@ -7,7 +7,7 @@
 
 // Funcion para limpiar consola ("cls" para windows, "clear" para linux)
 void limpiarPantalla() {
-	system("clear");
+	system("cls");
 }
 
 // Valida el formato de la placa
@@ -43,7 +43,7 @@ Vehiculo registrarVehiculo() {
 		printf("Ingrese la placa vehicular (EJEMPLO: XYZ567): \n");
 		scanf("%19s", v.placa);
 	
-		// Conversi髇 a may鷖culas para validar correctamente (correcci髇 solicitada)
+		// Conversi贸n a may煤sculas para validar correctamente (correcci贸n solicitada)
 		for (int i = 0; v.placa[i]; i++) {
 			v.placa[i] = toupper(v.placa[i]);
 		}
@@ -144,11 +144,11 @@ Vehiculo registrarVehiculo() {
 	while (!valido) {
 		printf("Ingrese el numero de revisiones (0-3): \n");
 		if (scanf("%d", &v.revisiones) == 1) {
-			// Verificaci髇 especial si es 0 (correcci髇 solicitada)
+			// Verificaci贸n especial si es 0 (correcci贸n solicitada)
 			if (v.revisiones == 0) {
 				printf("Debe cumplir al menos una revision para matricularse.\n");
 				getchar(); getchar(); // limpiar buffer y esperar ENTER
-				v.anio = -1; // marcamos inv醠ido para que el main lo descarte
+				v.anio = -1; // marcamos inv谩lido para que el main lo descarte
 				return v;
 			} else if (v.revisiones >= 1 && v.revisiones <= 3) {
 				valido = 1;
