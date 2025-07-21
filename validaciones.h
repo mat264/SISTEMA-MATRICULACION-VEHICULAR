@@ -2,6 +2,7 @@
 #define VALIDACIONES_H
 
 #define MAX_VEHICULOS 100
+#define ARCHIVO_VEHICULOS "vehiculos.txt"
 
 typedef struct {
 	char placa[20];     
@@ -9,12 +10,12 @@ typedef struct {
 	int anio;
 	char tipo[20];      
 	float avaluo;
-	float matricula;    // Valor total de la matÌ≠cula
+	float matricula;    // Valor total de la matr√≠cula
 	int revisiones;     // Numero de revisiones realizadas
 	int multas;         // Numero de multas
 	float valorBase;    // 1% del avaluo
 	float recargo;      // 15% si no cumple 3 revisiones
-	float descuento;    // 10% si el vehÌ≠culo tiene m·s de 10 aÒos
+	float descuento;    // 10% si el veh√≠culo tiene m√°s de 10 a√±os
 	float multasTotales; // 50$ por cada multa
 } Vehiculo;
 
@@ -23,9 +24,14 @@ int validarPlaca(const char* placa);
 void limpiarPantalla();
 Vehiculo registrarVehiculo();
 
-// Funciones de gestion de vehÌculos
+// Funciones de gestion de veh√≠culos
 void agregarVehiculo(Vehiculo vehiculos[], int* totalVehiculos, Vehiculo nuevoVehiculo);
 void listarVehiculos(Vehiculo vehiculos[], int totalVehiculos);
 int buscarVehiculoPorPlaca(Vehiculo vehiculos[], int totalVehiculos, const char* placa);
+
+// Funciones de manejo de archivos
+void guardarVehiculoEnArchivo(Vehiculo v);
+int cargarVehiculosDesdeArchivo(Vehiculo vehiculos[]);
+void mostrarVehiculo(Vehiculo v);
 
 #endif

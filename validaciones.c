@@ -33,6 +33,68 @@ void mostrarVehiculo(Vehiculo v) {
 	printf("-------------------------\n");
 }
 
+// Función para guardar un vehículo en el archivo
+void guardarVehiculoEnArchivo(Vehiculo v) {
+	FILE* archivo = fopen(ARCHIVO_VEHICULOS, "a");
+	if (archivo == NULL) {
+		printf("Error: No se pudo abrir el archivo para guardar.\n");
+		return;
+	}
+	
+	// Formato: placa:cedula:anio:avaluo:matricula
+	fprintf(archivo, "%s:%s:%d:%.2f:%.2f\n", 
+		v.placa, v.cedula, v.anio, v.avaluo, v.matricula);
+	
+	fclose(archivo);
+}
+
+// Función para cargar vehículos desde el archivo
+int cargarVehiculosDesdeArchivo(Vehiculo vehiculos[]) {
+	FILE* archivo = fopen(ARCHIVO_VEHICULOS, "r");
+	if (archivo == NULL) {
+		// Si no existe el archivo, no es error, simplemente no hay vehículos previos
+		return 0;
+	}
+	
+	int totalVehiculos = 0;
+	char linea[200];
+	
+	while (fgets(linea, sizeof(linea), archivo) && totalVehiculos < MAX_VEHICULOS) {
+		// Remover el salto de línea al final
+		linea[strcspn(linea, "\n")] = 0;
+		
+		// Parsear la línea usando strtok
+		char* token = strtok(linea, ":");
+		if (token != NULL) {
+			strcpy(vehiculos[totalVehiculos].placa, token);
+			
+			token = strtok(NULL, ":");
+			if (token != NULL) {
+				strcpy(vehiculos[totalVehiculos].cedula, token);
+				
+				token = strtok(NULL, ":");
+				if (token != NULL) {
+					vehiculos[totalVehiculos].anio = atoi(token);
+					
+					token = strtok(NULL, ":");
+					if (token != NULL) {
+						vehiculos[totalVehiculos].avaluo = atof(token);
+						
+						token = strtok(NULL, ":");
+						if (token != NULL) {
+							vehiculos[totalVehiculos].matricula = atof(token);
+							totalVehiculos++;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	fclose(archivo);
+	return totalVehiculos;
+}
+
 Vehiculo registrarVehiculo() {
 	Vehiculo v;
 	int valido = 0;
@@ -175,17 +237,38 @@ Vehiculo registrarVehiculo() {
 	while (!valido) {
 		printf("Ingrese el numero de multas pendientes: \n ");
 		if (scanf("%d", &v.multas) == 1) {
+			
+			int c = getchar();
+			if (c == '.') {
+				// Si encontramos un punto decimal, es un numero decimal
+				printf("Error: Las multas deben ser un numero entero. No se permiten decimales.\n");
+				printf("Presione enter para continuar\n");
+				// Limpiar el resto de la entrada
+				while ((c = getchar()) != '\n' && c != EOF);
+				getchar();
+				limpiarPantalla();
+				continue; //Salta la iteracion actual y continua con la siguiente iteracion del mismo bucle.
+				
+			} else {
+				// Devolver el caracter al buffer si no es un punto
+				ungetc(c, stdin);
+			}
+			
 			if (v.multas >= 0 && v.multas <= 10) {
 				valido = 1;
 			} else {
 				printf("Numero de multas invalido. Debe ser un numero entre 0 y 10\n");
-				
+				printf("Presione enter para continuar\n");
+				getchar(); getchar();
+				limpiarPantalla();
 			}
 		} else {
 			printf("Error: Debe ingresar un numero valido.\n");
-			
 			int c;
 			while ((c = getchar()) != '\n' && c != EOF);
+			getchar();
+			limpiarPantalla();
+			
 		}
 	}
 	
@@ -201,6 +284,10 @@ void agregarVehiculo(Vehiculo vehiculos[], int* totalVehiculos, Vehiculo nuevoVe
 	if (*totalVehiculos < MAX_VEHICULOS) {
 		vehiculos[*totalVehiculos] = nuevoVehiculo;
 		(*totalVehiculos)++;
+		
+		// Guardar el vehiculo en el archivo
+		guardarVehiculoEnArchivo(nuevoVehiculo);
+		
 		printf("Vehiculo registrado exitosamente!\n");
 	} else {
 		printf("Error: No se pueden registrar mas vehiculos. Limite alcanzado.\n");
@@ -236,5 +323,3 @@ int buscarVehiculoPorPlaca(Vehiculo vehiculos[], int totalVehiculos, const char*
 	}
 	return -1;
 }
-
-
