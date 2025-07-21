@@ -52,7 +52,7 @@ void guardarVehiculoEnArchivo(Vehiculo v) {
 int cargarVehiculosDesdeArchivo(Vehiculo vehiculos[]) {
 	FILE* archivo = fopen(ARCHIVO_VEHICULOS, "r");
 	if (archivo == NULL) {
-		// Si no existe el archivo, no es error, simplemente no hay vehículos previos
+		// Si no existe el archivo, no es error, solo no hay vehículos guardados
 		return 0;
 	}
 	
@@ -63,7 +63,7 @@ int cargarVehiculosDesdeArchivo(Vehiculo vehiculos[]) {
 		// Remover el salto de línea al final
 		linea[strcspn(linea, "\n")] = 0;
 		
-		// Parsear la línea usando strtok
+		// Lee la línea usando strtok para leer hasta encontrar :
 		char* token = strtok(linea, ":");
 		if (token != NULL) {
 			strcpy(vehiculos[totalVehiculos].placa, token);
@@ -105,7 +105,7 @@ Vehiculo registrarVehiculo() {
 		printf("Ingrese la placa vehicular (EJEMPLO: XYZ567): \n");
 		scanf("%19s", v.placa);
 	
-		// Conversión a mayúsculas para validar correctamente (corrección solicitada)
+		// Conversión a mayúsculas para validar correctamente 
 		for (int i = 0; v.placa[i]; i++) {
 			v.placa[i] = toupper(v.placa[i]);
 		}
