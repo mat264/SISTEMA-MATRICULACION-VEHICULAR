@@ -10,13 +10,13 @@ Instrucciones de compilación y ejecución
 
 1.-Descargar los archivo en zip desde github
 
-2.-Abrir el zip y extraer la carpeta SISTEMADEMATRICLUACION
+2.-Abrir el zip y extraer la carpeta SISTEMA-MATRICULACION-VEHICULAR-main
 
 3.-Abrir zinjai
 
 4.-En el menú archivo ingresar a la opcion abrir
 
-5.-Buscar la carpeta SISTEMADEMATRICULACION donde se encuentran todos los archivos del programa.
+5.-Buscar la carpeta SISTEMA-MATRICULACION-VEHICULAR-main donde se encuentran todos los archivos del programa.
 
 6.-Seleccionar el archivo PROYECTOFINAL_G1.zpr y abrir
 
