@@ -16,7 +16,7 @@ Instrucciones de compilación y ejecución
 
 4.-En el menú archivo ingresar a la opcion abrir
 
-5.-Buscar la carpeta SISTEMADEMATRICULACION
+5.-Buscar la carpeta SISTEMADEMATRICULACION donde se encuentran todos los archivos del programa.
 
 6.-Seleccionar el archivo PROYECTOFINAL_G1.zpr y abrir
 
