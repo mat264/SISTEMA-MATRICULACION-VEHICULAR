@@ -32,4 +32,4 @@ Yepez Anderson
 
 Yupa Erik
 
-Captura o video de ejecución
+
