@@ -206,7 +206,7 @@ Vehiculo registrarVehiculo() {
 	while (!valido) {
 		printf("Ingrese el numero de revisiones (0-3): \n");
 		if (scanf("%d", &v.revisiones) == 1) {
-			// Verificación, debe cumplir al menos una multa
+			// Verificación, debe cumplir al menos una revision
 			if (v.revisiones == 0) {
 				printf("Debe cumplir al menos una revision para matricularse.\n");
 				getchar(); getchar(); // limpiar buffer y esperar ENTER
